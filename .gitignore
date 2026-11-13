@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment variables & secrets
+.env
+.env.local
+
+# Telegram Sessions & Databases
+*.session
+*.session-journal
+*.db
+*.sqlite
+*.sqlite3
+backend/*.session
+backend/*.session-journal
+backend/*.db
+
+# Temporary download files
+temp_downloads/
+*.mp4
+*.mp3
+*.m3u8
+*.ts
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.html
+*.zip
+
+# Scratch files
+scratch*
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

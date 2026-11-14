@@ -33,6 +33,12 @@ def home():
 
 @app.get("/healthz")
 def healthz():
+    try:
+        import app as main_app
+        if hasattr(main_app, "ensure_bot_running"):
+            main_app.ensure_bot_running()
+    except Exception as e:
+        print(f"Healthz check error: {e}", flush=True)
     return {"status": "healthy"}
 
 # API Endpoint: Extract video metadata

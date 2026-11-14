@@ -666,8 +666,8 @@ def handle_link(message):
     download_semaphore.acquire()
     local_file = None
     job_dir = os.path.join(TEMP_DIR, f"job_{chat_id}_{uuid.uuid4().hex[:8]}")
-    os.makedirs(job_dir, exist_ok=True)
     try:
+        os.makedirs(job_dir, exist_ok=True)
         # Extract video info to check if readable
         info = get_video_info(url)
         original_title = info.get('title', 'Video')
@@ -1043,7 +1043,12 @@ def handle_other_messages(message):
 def run_bot():
     cleanup_stale_temp_dirs()
     safe_print(f"Bot is starting... (@{get_bot_username()})")
-    bot.infinity_polling(timeout=60, skip_pending=True, long_polling_timeout=60)
+    while True:
+        try:
+            bot.infinity_polling(timeout=30, skip_pending=False, long_polling_timeout=30)
+        except Exception as e:
+            safe_print(f"Infinity polling exception: {e}. Retrying in 5 seconds...")
+            time.sleep(5)
 
 if __name__ == "__main__":
     run_bot()

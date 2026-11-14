@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Video Downloader</title>
+    <!-- Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Telegram WebApp SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <i class="fa-solid fa-circle-down logo-icon"></i>
+            </div>
+            <h1>Video Downloader</h1>
+            <p class="subtitle">Extract and download video from your favorite platforms</p>
+            
+            <div class="platform-badges">
+                <span class="badge" title="YouTube"><i class="fa-brands fa-youtube"></i></span>
+                <span class="badge" title="TikTok"><i class="fa-brands fa-tiktok"></i></span>
+                <span class="badge" title="Facebook"><i class="fa-brands fa-facebook"></i></span>
+                <span class="badge" title="Kuaishou"><i class="fa-solid fa-bolt"></i> KS</span>
+                <span class="badge" title="Rednote"><i class="fa-solid fa-book-open"></i> XHS</span>
+                <span class="badge" title="DramaBox"><i class="fa-solid fa-film"></i> DB</span>
+            </div>
+        </header>
+
+        <!-- Main Card -->
+        <main class="main-card">
+            <!-- URL Form -->
+            <div class="input-section">
+                <label for="video-url">Paste Video Link</label>
+                <div class="input-wrapper">
+                    <input type="text" id="video-url" placeholder="https://..." autocomplete="off">
+                    <button id="paste-btn" class="icon-btn" title="Paste Link"><i class="fa-regular fa-clipboard"></i></button>
+                </div>
+                <button id="extract-btn" class="primary-btn">
+                    <span>Extract Video</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- Loading Spinner (Skeleton) -->
+            <div id="loader" class="loader-container hidden">
+                <div class="spinner"></div>
+                <p>Analyzing link and extracting media info...</p>
+            </div>
+
+            <!-- Video Preview Card -->
+            <div id="preview-card" class="preview-card hidden">
+                <div class="thumbnail-wrapper">
+                    <img id="video-thumbnail" src="" alt="Video Thumbnail">
+                    <span id="video-duration" class="duration-tag">00:00</span>
+                    <div class="platform-badge-overlay" id="platform-overlay">YT</div>
+                </div>
+                <div class="video-details">
+                    <h3 id="video-title">Video Title</h3>
+                    <p class="source-platform">Source: <span id="video-platform">YouTube</span></p>
+                    
+                    <!-- Formats and Download Links -->
+                    <div class="download-section">
+                        <label for="format-select">Choose Quality</label>
+                        <select id="format-select" class="format-dropdown">
+                            <!-- Populated by JavaScript -->
+                        </select>
+                        <button id="download-btn" class="download-btn">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Download to Device</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Progress Status -->
+            <div id="progress-container" class="progress-container hidden">
+                <div class="progress-info">
+                    <span>Downloading video file...</span>
+                    <span id="progress-percent">0%</span>
+                </div>
+                <div class="progress-bar-wrapper">
+                    <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+                </div>
+                <p class="progress-note">Proxied through server to bypass restrictions</p>
+            </div>
+        </main>
+
+        <!-- History Section -->
+        <section class="history-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-clock-rotate-left"></i> Recent Downloads</h2>
+                <button id="clear-history" class="text-btn">Clear All</button>
+            </div>
+            <div id="history-list" class="history-list">
+                <p class="empty-history">Your download history will appear here.</p>
+            </div>
+        </section>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">
+            <span id="toast-message">Message here</span>
+        </div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Developed with ❤️ for Telegram Mini Apps</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

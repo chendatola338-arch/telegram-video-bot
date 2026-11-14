@@ -24,6 +24,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def home():
+    index_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "index.html")
+    if os.path.exists(index_path):
+        return FileResponse(index_path)
+    return {"status": "ok", "message": "Telegram Video Downloader Bot is running"}
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "healthy"}
+
 # API Endpoint: Extract video metadata
 @app.get("/api/extract")
 async def extract_video(url: str = Query(..., description="The social media video URL")):

@@ -47,8 +47,9 @@ temp_downloads/
 *.jpeg
 *.png
 *.webp
-*.html
 *.zip
+*.html
+!frontend/index.html
 
 # Scratch files
 scratch*
